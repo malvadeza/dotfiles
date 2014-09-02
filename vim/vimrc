@@ -115,13 +115,16 @@ if has("autocmd")
 	"let g:pyflakes_use_quickfix = 0
 
 	autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
+	autocmd BufNewFile,BufRead Gemfile set filetype=ruby
+	autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
+	autocmd BufNewFile,BufRead Berksfile set filetype=ruby
 endif
 
 if has("unix")
 	let s:uname = system("uname")
 	if s:uname == "Darwin\n"
 		" Do Mac stuff here
-		colorscheme ir_black
+		colorscheme 256-grayvim
 	else
 		set background=dark
 		colorscheme solarized
