@@ -15,7 +15,7 @@ ZSH_THEME="robbyrussell"
 # CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -42,23 +42,14 @@ ZSH_THEME="robbyrussell"
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew django heroku pip postgres rvm rails rake)
+plugins=(git brew heroku postgres django pip virtualenv virtualenvwrapper rvm rails rake bundler)
+
+export PATH="/usr/local/bin:$PATH"
+export WORKON_HOME="$HOME/.envs"
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-PATH=$HOME/bin:/usr/local/bin:$PATH
-WORKON_HOME=~/Envs
-
-export PATH
-export WORKON_HOME
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source /usr/local/bin/virtualenvwrapper.sh
 
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
