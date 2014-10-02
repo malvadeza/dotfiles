@@ -20,6 +20,7 @@ antigen bundle ruby
 antigen bundle rails
 antigen bundle rake
 antigen bundle rvm
+antigen bundle bundler
 
 # Python
 antigen bundle python
