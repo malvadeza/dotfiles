@@ -14,20 +14,29 @@ call vundle#rc()
 Bundle "gmarik/vundle"
 
 " zen coding (for HTML)
+" CTRL + E -> Expand the tags
+" CTRL + N -> Cycle through empty tags
 Bundle "rstacruz/sparkup", {"rtp": "vim/"}
 
 " FuGITive 
+"
 Bundle "tpope/vim-fugitive"
 
 " NERDTree
 Bundle "scrooloose/nerdtree"
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
+let g:NERDTreeMapJumpNextSibling="l"
+let g:NERDTreeMapJumpPrevSibling="h"
 
+" <LEADER> + M -> Toggle NERDTree in all tabs
 Bundle "jistr/vim-nerdtree-tabs"
 nmap <silent> <Leader>m :NERDTreeTabsToggle<CR>
 
 " Syntastic
 Bundle "scrooloose/syntastic"
+
+" Ident Guides
+Bundle "nathanaelkane/vim-indent-guides"
 
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -45,6 +54,12 @@ let g:airline_powerline_fonts=1
 
 " Colorschemes
 Bundle "flazz/vim-colorschemes"
+
+" Colorscheme switcher
+" <F8> -> :NextColorScheme
+" <S-F8> -> :PrevColorScheme
+Bundle "xolox/vim-misc"
+Bundle "xolox/vim-colorscheme-switcher"
 
 Bundle "vim-scripts/django.vim"
 Bundle "gregsexton/MatchTag"
@@ -102,32 +117,46 @@ if has("autocmd")
 	autocmd FileType make setlocal tabstop=8 softtabstop=8 shiftwidth=8
 	autocmd FileType yaml setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
-	"autocmd FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
-	autocmd FileType c,cpp,java,javascript,php setlocal tabstop=4 softtabstop=4 shiftwidth=4
+	autocmd FileType c,cpp,java setlocal tabstop=4 softtabstop=4 shiftwidth=4 smartindent cindent
 
-	autocmd FileType html,xhtml,xml,css setlocal shiftwidth=4 tabstop=4 softtabstop=4
-	" Python
+	" Python related files
 	"au BufRead *.py compiler nose
-	autocmd FileType python set omnifunc=pythoncomplete#Complete
-	autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+	autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 	autocmd BufRead *.py set errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-	" Don't let pyflakes use the quickfix window
-	"let g:pyflakes_use_quickfix = 0
 
-	autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
-	autocmd BufNewFile,BufRead Gemfile set filetype=ruby
-	autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
-	autocmd BufNewFile,BufRead Berksfile set filetype=ruby
+	" HTML/XML/CSS related files
+	autocmd FileType html,xhtml,xml,css setlocal shiftwidth=4 tabstop=4 softtabstop=4
+	autocmd BufNewFile,BufRead *.rss,*.atom setlocal filetype=xml
+
+	autocmd FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 smartindent cindent noexpandtab
+	autocmd FileType php setlocal tabstop=4 softtabstop=4 shiftwidth=4 smartindent cindent noexpandtab
+
+	" Ruby related files
+	autocmd FileType ruby setlocal expandtab softtabstop=2 shiftwidth=2
+	autocmd BufNewFile,BufRead Gemfile setlocal filetype=ruby
+	autocmd BufNewFile,BufRead Vagrantfile setlocal filetype=ruby
+	autocmd BufNewFile,BufRead Berksfile setlocal filetype=ruby
+endif
+
+if has("gui_macvim")
+	set guifont=Inconsolata\ for\ Powerline:h11
+	set guioptions-=r
+	set guioptions-=L
+
+	colorscheme codeschool
+
 endif
 
 if has("unix")
 	let s:uname = system("uname")
 	if s:uname == "Darwin\n"
 		" Do Mac stuff here
-		colorscheme 256-grayvim
+		colorscheme 256-grayvim 
 	else
-		set background=dark
-		colorscheme solarized
+		" Do Linux stuff here
+		" set background=dark
+		" colorscheme solarized
 	endif
 endif
 
