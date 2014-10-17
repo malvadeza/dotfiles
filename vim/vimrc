@@ -38,6 +38,8 @@ Bundle "scrooloose/syntastic"
 " Ident Guides
 Bundle "nathanaelkane/vim-indent-guides"
 
+Bundle 'Yggdroot/indentLine'
+
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -145,7 +147,6 @@ if has("gui_macvim")
 	set guioptions-=L
 
 	colorscheme codeschool
-
 endif
 
 if has("unix")

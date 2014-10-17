@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="miloshadzic"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -42,7 +42,7 @@ DISABLE_AUTO_UPDATE="true"
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
 
-plugins=(git brew heroku postgres django pip virtualenv virtualenvwrapper rvm rails rake bundler)
+plugins=(command-not-found zsh-syntax-highlighting git brew heroku postgres python pip django virtualenv virtualenvwrapper ruby rvm rails rake bundler node npm nvm)
 
 export PATH="/usr/local/bin:$PATH"
 export WORKON_HOME="$HOME/.envs"
