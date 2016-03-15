@@ -42,12 +42,20 @@ DISABLE_AUTO_UPDATE="true"
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
 
-plugins=(command-not-found zsh-syntax-highlighting git brew heroku postgres python pip django virtualenv virtualenvwrapper ruby rvm rails rake bundler node npm nvm)
+plugins=(command-not-found zsh-syntax-highlighting git brew heroku postgres python pip django virtualenvwrapper ruby rvm rails rake bundler node npm nvm)
+alias vim="mvim -v"
 
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/texbin:/usr/local/bin:$PATH"
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+
 export WORKON_HOME="$HOME/.envs"
 
+export JAVA_HOME="$(/usr/libexec/java_home)"
+
 source $ZSH/oh-my-zsh.sh
+
+export NVM_DIR="/Users/tonho/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -63,3 +71,4 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
