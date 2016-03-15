@@ -7,69 +7,97 @@ filetype off
 " Load pathogen with docs for all plugins
 
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Bundle "gmarik/vundle"
+Plugin 'gmarik/vundle'
 
 " zen coding (for HTML)
 " CTRL + E -> Expand the tags
 " CTRL + N -> Cycle through empty tags
-Bundle "rstacruz/sparkup", {"rtp": "vim/"}
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " FuGITive 
 "
-Bundle "tpope/vim-fugitive"
+Plugin 'tpope/vim-fugitive'
 
 " NERDTree
-Bundle "scrooloose/nerdtree"
+Plugin 'scrooloose/nerdtree'
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
-let g:NERDTreeMapJumpNextSibling="l"
-let g:NERDTreeMapJumpPrevSibling="h"
+let g:NERDTreeMapJumpNextSibling='l'
+let g:NERDTreeMapJumpPrevSibling='h'
 
 " <LEADER> + M -> Toggle NERDTree in all tabs
-Bundle "jistr/vim-nerdtree-tabs"
+Plugin 'jistr/vim-nerdtree-tabs'
 nmap <silent> <Leader>m :NERDTreeTabsToggle<CR>
 
 " Syntastic
-Bundle "scrooloose/syntastic"
+Plugin 'scrooloose/syntastic'
+let g:syntastic_check_on_opne=1
 
 " Ident Guides
-Bundle "nathanaelkane/vim-indent-guides"
+Plugin 'nathanaelkane/vim-indent-guides'
 nmap <silent> <Leader>g :IndentGuidesToggle<CR>
 let g:indent_guides_auto_colors = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
-" Bundle 'Yggdroot/indentLine'
+" Plugin 'Yggdroot/indentLine'
 
 " Snipmate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+"imap <C-J> <Plug>snipMateNextOrTrigger
+"smap <C-J> <Plug>snipMateNextOrTrigger
 
 " CtrlP
-Bundle "kien/ctrlp.vim"
+Plugin 'kien/ctrlp.vim'
 
 " Airline
-Bundle "bling/vim-airline"
+Plugin 'bling/vim-airline'
 set laststatus=2
 let g:airline_powerline_fonts=1
 
 " Colorschemes
-Bundle "flazz/vim-colorschemes"
+Plugin 'flazz/vim-colorschemes'
 
 " Colorscheme switcher
 " <F8> -> :NextColorScheme
 " <S-F8> -> :PrevColorScheme
-Bundle "xolox/vim-misc"
-Bundle "xolox/vim-colorscheme-switcher"
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-colorscheme-switcher'
 
-Bundle "vim-scripts/django.vim"
-Bundle "gregsexton/MatchTag"
-Bundle "tpope/vim-surround"
+Plugin 'vim-scripts/django.vim'
+Plugin 'gregsexton/MatchTag'
+Plugin 'tpope/vim-surround'
+
+Plugin 'Glench/Vim-Jinja2-Syntax'
+
+" Auto Complete
+Plugin 'Valloric/YouCompleteMe'
+let g:ycm_autoclose_preview_window_after_completion=1
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+
+" Auto add matching brackets, parenthesis, brace and quotes
+Plugin 'vim-scripts/simple-pairs'
+
+" Displays bar with variables or functions in the file
+Plugin 'majutsushi/tagbar'
+"let g:tagbar_ctags_bin = "/usr/bin/ctags"
+
+" Coffee Script support
+Plugin 'kchmck/vim-coffee-script'
+
+" Javascript semantic complete
+Plugin 'marijnh/tern_for_vim'
+let g:tern_show_arguments_hints='on_hold'
+
+call vundle#end()
 
 filetype plugin on 
 filetype indent on
@@ -179,7 +207,7 @@ if has("unix")
 		set guioptions-=r
 		set guioptions-=L
 
-		colorscheme codeschool
+		colorscheme hybrid
 	else
 		let s:uname = system("uname")
 
