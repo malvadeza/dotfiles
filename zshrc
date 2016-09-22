@@ -1,3 +1,6 @@
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -6,9 +9,6 @@
 # ZSH_THEME="random"
 # ZSH_THEME="avit"
 ZSH_THEME="gallois"
-
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
 
 # Uncomment this to disable bi-weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
