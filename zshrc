@@ -1,50 +1,64 @@
-export ANTIGEN_PATH="$HOME/.antigen"
-export ANTIGEN_ZSH="$ANTIGEN_PATH/antigen.zsh"
-export WORKON_HOME="$HOME/Envs"
-export PATH="/usr/local/bin:$PATH"
-
-source $ANTIGEN_ZSH
-
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+# ZSH_THEME="miloshadzic"
+# ZSH_THEME="random"
+# ZSH_THEME="avit"
+ZSH_THEME="gallois"
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle heroku
-antigen bundle command-not-found
+# Uncomment this to disable bi-weekly auto-update checks
+DISABLE_AUTO_UPDATE="true"
 
-# Languges Bundles
-# Ruby
-antigen bundle ruby
-antigen bundle rails
-antigen bundle rake
-antigen bundle rvm
-antigen bundle bundler
+plugins=(
+	command-not-found
+	zsh-syntax-highlighting
+	git
+	brew
+	heroku
+	postgres
+	python
+	pip
+	django
+	virtualenvwrapper
+	ruby
+	rvm
+	rails
+	rake
+	bundler
+	node
+	npm
+	nvm
+	docker
+)
+# alias vim="mvim -v"
 
-# Python
-antigen bundle python
-antigen bundle pip
-antigen bundle django
-antigen bundle virtualenv
-antigen bundle virtualenvwrapper
+export PATH="/usr/texbin:/usr/local/bin:$PATH"
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 
-# Node
-antigen bundle node
-antigen bundle npm
-antigen bundle nvm
+export WORKON_HOME="$HOME/.envs"
 
-antigen bundle postgres
+export JAVA_HOME="$(/usr/libexec/java_home)"
 
-# OS Specific plugins
-# TODO
-antigen bundle brew
+source $ZSH/oh-my-zsh.sh
 
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# Load the theme.
-antigen theme miloshadzic
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# Tell antigen that you're done.
-antigen apply
+# # Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
