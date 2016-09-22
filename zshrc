@@ -5,7 +5,10 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="miloshadzic"
+# ZSH_THEME="miloshadzic"
+# ZSH_THEME="random"
+# ZSH_THEME="avit"
+ZSH_THEME="gallois"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -42,8 +45,28 @@ DISABLE_AUTO_UPDATE="true"
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
 
-plugins=(command-not-found zsh-syntax-highlighting git brew heroku postgres python pip django virtualenvwrapper ruby rvm rails rake bundler node npm nvm)
-alias vim="mvim -v"
+plugins=(
+	command-not-found 
+	zsh-syntax-highlighting
+	git
+	brew
+	heroku
+	postgres
+	python 
+	pip
+	django
+	virtualenvwrapper
+	ruby
+	rvm
+	rails
+	rake
+	bundler
+	node
+	npm
+	nvm
+	docker
+)
+# alias vim="mvim -v"
 
 export PATH="/usr/texbin:/usr/local/bin:$PATH"
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
@@ -54,7 +77,7 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 
 source $ZSH/oh-my-zsh.sh
 
-export NVM_DIR="/Users/tonho/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # export MANPATH="/usr/local/man:$MANPATH"

@@ -97,6 +97,9 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'marijnh/tern_for_vim'
 let g:tern_show_arguments_hints='on_hold'
 
+" OpenGL Shading Language Syntax
+Plugin 'tikhomirov/vim-glsl'
+
 call vundle#end()
 
 filetype plugin on 
