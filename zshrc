@@ -14,25 +14,26 @@ ZSH_THEME="gallois"
 DISABLE_AUTO_UPDATE="true"
 
 plugins=(
-	command-not-found
-	zsh-syntax-highlighting
-	git
 	brew
-	heroku
-	postgres
-	python
-	pip
-	django
-	virtualenvwrapper
-	ruby
-	rvm
-	rails
-	rake
 	bundler
+	command-not-found
+	django
+	docker
+	git
+	heroku
 	node
 	npm
-	nvm
-	docker
+	pip
+	postgres
+	python
+	rails
+	rake
+	ruby
+	rvm
+	yarn
+	zsh-syntax-highlighting
+#	nvm
+#	zsh-nvm
 )
 # alias vim="mvim -v"
 
@@ -45,8 +46,8 @@ export JAVA_HOME="$(/usr/libexec/java_home)"
 
 source $ZSH/oh-my-zsh.sh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
