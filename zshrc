@@ -37,12 +37,10 @@ plugins=(
 )
 # alias vim="mvim -v"
 
+export JAVA_HOME="$(/usr/libexec/java_home)"
 export PATH="/usr/texbin:/usr/local/bin:$PATH"
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-
 export WORKON_HOME="$HOME/.envs"
-
-export JAVA_HOME="$(/usr/libexec/java_home)"
 
 source $ZSH/oh-my-zsh.sh
 

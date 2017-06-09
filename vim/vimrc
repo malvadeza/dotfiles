@@ -37,11 +37,11 @@ Plugin 'scrooloose/syntastic'
 let g:syntastic_check_on_opne=1
 
 " Ident Guides
-Plugin 'nathanaelkane/vim-indent-guides'
-nmap <silent> <Leader>g :IndentGuidesToggle<CR>
-let g:indent_guides_auto_colors = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+" Plugin 'nathanaelkane/vim-indent-guides'
+" nmap <silent> <Leader>g :IndentGuidesToggle<CR>
+" let g:indent_guides_auto_colors = 1
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 " Plugin 'Yggdroot/indentLine'
 
@@ -87,7 +87,7 @@ nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 " Auto add matching brackets, parenthesis, brace and quotes
-Plugin 'vim-scripts/simple-pairs'
+" Plugin 'vim-scripts/simple-pairs'
 
 " Displays bar with variables or functions in the file
 Plugin 'majutsushi/tagbar'
@@ -221,10 +221,10 @@ if has("unix")
 			" Do OSX stuff here
 		else
 			" Do Linux stuff here
-			" set background=dark
-			" colorscheme solarized
+			set background=dark
+			colorscheme darkburn
 		endif
 
-		colorscheme hybrid
+		" colorscheme hybrid
 	endif
 endif
