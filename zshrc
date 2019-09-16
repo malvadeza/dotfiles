@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+ZSH_OVERRIDES=$HOME/.zsh_overrides
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -32,32 +33,18 @@ plugins=(
 	rvm
 	yarn
 	zsh-syntax-highlighting
-#	nvm
-#	zsh-nvm
 )
-# alias vim="mvim -v"
+
+# Aliases
+alias ggpforce="ggpush --force"
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
+
 export PATH="/usr/texbin:/usr/local/bin:$PATH"
-export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-export WORKON_HOME="$HOME/.envs"
+export PATH="/usr/local/sbin:$PATH"
 
-source $ZSH/oh-my-zsh.sh
+[ -f $ZSH_OVERRIDES ] && . $ZSH_OVERRIDES
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# Load ZSH
+. $ZSH/oh-my-zsh.sh
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
