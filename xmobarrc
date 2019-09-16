@@ -1,8 +1,0 @@
-Config	{ font = "xft:inconsolata:size=10:antialias=true"
-		, bgColor = "#002b36"
-		, fgColor = "#657b83"
-		, position = TopW L 90
-		, lowerOnStart = True
-		, sepChar = "%"
-		, alignSep = "}{"
-		}
