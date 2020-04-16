@@ -41,11 +41,6 @@ alias ggpforce="ggpush --force"
 alias ggploko="ggpush --no-verify"
 alias ggpyolo="ggpforce --no-verify"
 
-export JAVA_HOME="$(/usr/libexec/java_home)"
-
-export PATH="/usr/texbin:/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-
 # Load ZSH
 . $ZSH/oh-my-zsh.sh
 
