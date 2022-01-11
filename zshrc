@@ -18,7 +18,6 @@ plugins=(
 	brew
 	bundler
 	command-not-found
-	django
 	docker
 	git
 	heroku
