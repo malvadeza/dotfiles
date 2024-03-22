@@ -6,10 +6,13 @@ ZSH_OVERRIDES=$HOME/.zsh_overrides
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="miloshadzic"
 # ZSH_THEME="random"
+# ZSH_THEME="miloshadzic"
 # ZSH_THEME="avit"
-ZSH_THEME="gallois"
+# ZSH_THEME="gallois"
+# ZSH_THEME="sorin"
+# ZSH_THEME="dallas"
+ZSH_THEME="eastwood"
 
 # Uncomment this to disable bi-weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
