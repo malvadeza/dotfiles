@@ -42,6 +42,7 @@ alias gdst="git diff --stat"
 alias ggpforce="ggpush --force"
 alias ggploko="ggpush --no-verify"
 alias ggpyolo="ggpforce --no-verify"
+alias gproc="git pull --rebase origin $(git_current_branch)"
 
 # Load ZSH
 . $ZSH/oh-my-zsh.sh
