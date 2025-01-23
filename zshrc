@@ -37,14 +37,15 @@ plugins=(
 	zsh-syntax-highlighting
 )
 
+# Loads oh-my-zsh
+
+. $ZSH/oh-my-zsh.sh
+
 # Aliases
 alias gdst="git diff --stat"
 alias ggpforce="ggpush --force"
 alias ggploko="ggpush --no-verify"
 alias ggpyolo="ggpforce --no-verify"
 alias gproc="git pull --rebase origin $(git_current_branch)"
-
-# Load ZSH
-. $ZSH/oh-my-zsh.sh
 
 [ -f $ZSH_OVERRIDES ] && . $ZSH_OVERRIDES
