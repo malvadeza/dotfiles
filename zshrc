@@ -1,3 +1,5 @@
+DOTFILES_DIR=$HOME/dotfiles
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 ZSH_OVERRIDES=$HOME/.zsh_overrides
@@ -41,11 +43,9 @@ plugins=(
 
 . $ZSH/oh-my-zsh.sh
 
-# Aliases
-alias gdst="git diff --stat"
-alias ggpforce="ggpush --force"
-alias ggploko="ggpush --no-verify"
-alias ggpyolo="ggpforce --no-verify"
-alias gproc="git pull --rebase origin $(git_current_branch)"
+# Loads extensions
+[ -f $DOTFILES_DIR/01-aliases.sh ] && . $DOTFILES_DIR/01-aliases.sh
+[ -f $DOTFILES_DIR/02-commands.sh ] && . $DOTFILES_DIR/02-commands.sh
 
+# Loads overrides
 [ -f $ZSH_OVERRIDES ] && . $ZSH_OVERRIDES
