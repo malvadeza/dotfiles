@@ -13,10 +13,22 @@ files=(
 for file in "${files[@]}"; do
     src="${dotfiles_dir}/${file}"
     dest="${HOME}/.${file}"
-    ln -sf "$src" "$dest"
+
+    if [ -e "$dest" ]; then
+        echo "Dotfiles: Skipping $dest, already exists."
+    else
+        ln -sf "$src" "$dest"
+        echo "Dotfiles: Created symlink for $file."
+    fi
 done
 
 # Create .zsh_overrides file
-touch "${HOME}/.zsh_overrides"
+zsh_overrides_file="${HOME}/.zsh_overrides"
+if [ -e "$zsh_overrides_file" ]; then
+    echo "Dotfiles: Skipping $zsh_overrides_file, already exists."
+else
+    touch "$zsh_overrides_file"
+    echo "Dotfiles: Created $zsh_overrides_file."
+fi
 
-echo "Dotfiles setup complete."
+echo "Dotfiles: Setup complete."
