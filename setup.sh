@@ -3,14 +3,14 @@
 dotfiles_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Array of files to symlink
-files=(
+FILES=(
     "zshrc"
     "oh-my-zsh"
     "tmux.conf"
 )
 
 # Create symlinks
-for file in "${files[@]}"; do
+for file in "${FILES[@]}"; do
     src="${dotfiles_dir}/${file}"
     dest="${HOME}/.${file}"
 
