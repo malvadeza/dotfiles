@@ -4,50 +4,50 @@ dotfiles_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Array of files to symlink
 FILES=(
-    "zshrc"
-    "oh-my-zsh"
-    "tmux.conf"
+  "zshrc"
+  "oh-my-zsh"
 )
 
 # Create symlinks
 for file in "${FILES[@]}"; do
-    src="${dotfiles_dir}/${file}"
-    dest="${HOME}/.${file}"
+  src="${dotfiles_dir}/${file}"
+  dest="${HOME}/.${file}"
 
-    if [ -e "$dest" ]; then
-        echo "Dotfiles: Skipping $dest, already exists."
-    else
-        ln -sf "$src" "$dest"
-        echo "Dotfiles: Created symlink for $file."
-    fi
+  if [ -e "$dest" ]; then
+    echo "Dotfiles: Skipping $dest, already exists."
+  else
+    ln -sf "$src" "$dest"
+    echo "Dotfiles: Created symlink for $file."
+  fi
 done
 
 # Config dirs to symlink into ~/.config/
 CONFIG_DIRS=(
-    "ghostty"
-    "nvim"
+  "ghostty"
+  "nvim"
 )
 
 mkdir -p "${HOME}/.config"
 for dir in "${CONFIG_DIRS[@]}"; do
-    src="${dotfiles_dir}/${dir}"
-    dest="${HOME}/.config/${dir}"
+  src="${dotfiles_dir}/${dir}"
+  dest="${HOME}/.config/${dir}"
 
-    if [ -e "$dest" ]; then
-        echo "Dotfiles: Skipping $dest, already exists."
-    else
-        ln -sf "$src" "$dest"
-        echo "Dotfiles: Created symlink for .config/$dir."
-    fi
+  if [ -e "$dest" ]; then
+    echo "Dotfiles: Skipping $dest, already exists."
+  else
+    ln -sf "$src" "$dest"
+    echo "Dotfiles: Created symlink for .config/$dir."
+  fi
 done
 
 # Create .zsh_overrides file
 zsh_overrides_file="${HOME}/.zsh_overrides"
 if [ -e "$zsh_overrides_file" ]; then
-    echo "Dotfiles: Skipping $zsh_overrides_file, already exists."
+  echo "Dotfiles: Skipping $zsh_overrides_file, already exists."
 else
-    touch "$zsh_overrides_file"
-    echo "Dotfiles: Created $zsh_overrides_file."
+  touch "$zsh_overrides_file"
+  echo "Dotfiles: Created $zsh_overrides_file."
 fi
 
 echo "Dotfiles: Setup complete."
+
