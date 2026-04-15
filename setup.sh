@@ -22,6 +22,25 @@ for file in "${FILES[@]}"; do
     fi
 done
 
+# Config dirs to symlink into ~/.config/
+CONFIG_DIRS=(
+    "ghostty"
+    "nvim"
+)
+
+mkdir -p "${HOME}/.config"
+for dir in "${CONFIG_DIRS[@]}"; do
+    src="${dotfiles_dir}/${dir}"
+    dest="${HOME}/.config/${dir}"
+
+    if [ -e "$dest" ]; then
+        echo "Dotfiles: Skipping $dest, already exists."
+    else
+        ln -sf "$src" "$dest"
+        echo "Dotfiles: Created symlink for .config/$dir."
+    fi
+done
+
 # Create .zsh_overrides file
 zsh_overrides_file="${HOME}/.zsh_overrides"
 if [ -e "$zsh_overrides_file" ]; then
