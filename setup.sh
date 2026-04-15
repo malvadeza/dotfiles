@@ -40,6 +40,16 @@ for dir in "${CONFIG_DIRS[@]}"; do
   fi
 done
 
+# Install zsh-syntax-highlighting
+ZSH_SYNTAX_DIR="${dotfiles_dir}/oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+if [ -d "$ZSH_SYNTAX_DIR" ]; then
+  echo "Dotfiles: Skipping zsh-syntax-highlighting, already installed."
+else
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_SYNTAX_DIR"
+  rm -rf "$ZSH_SYNTAX_DIR/.git"
+  echo "Dotfiles: Installed zsh-syntax-highlighting."
+fi
+
 # Create .zsh_overrides file
 zsh_overrides_file="${HOME}/.zsh_overrides"
 if [ -e "$zsh_overrides_file" ]; then
