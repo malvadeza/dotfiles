@@ -1,6 +1,9 @@
 # --- Notifications ---
 desktop-notifications = true
 
+# --- Font ---
+font-size = 12
+
 # --- Cursor ---
 cursor-style = bar
 cursor-style-blink = true
