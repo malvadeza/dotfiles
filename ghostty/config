@@ -1,3 +1,6 @@
+# --- macOS Option as Alt/Meta (for terminal keybinds) ---
+macos-option-as-alt = left
+
 # --- Notifications ---
 desktop-notifications = true
 
