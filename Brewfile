@@ -1,0 +1,3 @@
+brew "neovim"
+
+cask "ghostty"
