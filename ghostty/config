@@ -7,6 +7,9 @@ desktop-notifications = true
 # --- Font ---
 font-size = 12
 
+# --- Theme ---
+theme = dark:Dracula,light:GitHub Light Default
+
 # --- Cursor ---
 cursor-style = bar
 cursor-style-blink = true
