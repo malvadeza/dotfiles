@@ -6,7 +6,7 @@ return {
         sources = {
           files = {
             hidden = true,
-            ignored = true,
+            ignored = false,
             follow = true,
           },
           explorer = {
