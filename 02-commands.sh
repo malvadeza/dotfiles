@@ -42,14 +42,18 @@ function zshupdate() {
 
 	local custom_plugins="$ZSH/custom/plugins"
 	if [ -d "$custom_plugins" ]; then
-		echo "Updating custom plugins..."
+		local plugins_updated=0
 		for plugin in "$custom_plugins"/*; do
-			if [ -d "$plugin/.git" ]; then
+			if [ -d "$plugin" ] && [ -d "$plugin/.git" ]; then
 				local plugin_name=$(basename "$plugin")
-				echo "  Updating $plugin_name..."
-				(cd "$plugin" && git pull)
+				echo "Updating custom plugin: $plugin_name..."
+				(cd "$plugin" && git pull && echo "  ✓ $plugin_name updated") || echo "  ✗ Failed to update $plugin_name"
+				((plugins_updated++))
 			fi
 		done
+		if [ $plugins_updated -eq 0 ]; then
+			echo "No custom plugins found to update."
+		fi
 	fi
 
 	echo "Done!"
