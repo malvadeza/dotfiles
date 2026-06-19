@@ -34,3 +34,23 @@ _proj_completion() {
 }
 
 compdef _proj_completion proj
+
+# zshupdate - Update oh-my-zsh and custom plugins
+function zshupdate() {
+	echo "Updating oh-my-zsh..."
+	omz update
+
+	local custom_plugins="$ZSH/custom/plugins"
+	if [ -d "$custom_plugins" ]; then
+		echo "Updating custom plugins..."
+		for plugin in "$custom_plugins"/*; do
+			if [ -d "$plugin/.git" ]; then
+				local plugin_name=$(basename "$plugin")
+				echo "  Updating $plugin_name..."
+				(cd "$plugin" && git pull)
+			fi
+		done
+	fi
+
+	echo "Done!"
+}
