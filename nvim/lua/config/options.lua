@@ -13,7 +13,7 @@ local function set_theme()
   handle:close()
 
   if result == "Dark" then
-    vim.cmd("colorscheme tokyonight")
+    vim.cmd("colorscheme tokyonight-moon")
   else
     vim.cmd("colorscheme tokyonight-day")
   end
