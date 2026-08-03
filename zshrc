@@ -51,7 +51,3 @@ plugins=(
 [ -f $ZSH_OVERRIDES ] && . $ZSH_OVERRIDES
 export PATH="$HOME/.local/bin:$PATH"
 
-# opencode
-export PATH=/Users/antonio.junior/.opencode/bin:$PATH
-
-. "$HOME/.local/bin/env"
