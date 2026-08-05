@@ -5,6 +5,25 @@
 # Layout assumption: ~/Projects/<repo>/<branch> (each branch is a worktree)
 # ---------------------------------------------------------------------------
 
+# _gwt_pick <prompt> <item1> <item2> ...
+# Interactive picker: uses fzf if available, falls back to a numbered select menu.
+function _gwt_pick() {
+    local prompt="$1"; shift
+    local items=("$@")
+    if command -v fzf &>/dev/null; then
+        printf '%s\n' "${items[@]}" | fzf --prompt="$prompt "
+    else
+        local i=1
+        for item in "${items[@]}"; do
+            echo "  $i) $item"
+            ((i++))
+        done
+        echo -n "  pick (1-${#items[@]}): "
+        read -r choice
+        echo "${items[$choice]}"
+    fi
+}
+
 # _gwt_find_anchor <repo-name>
 # Returns the path to any worktree subdir inside ~/Projects/<repo>/ so we can
 # run "git -C <anchor>" commands from outside the repo.
@@ -39,15 +58,15 @@ function proj() {
     fi
 
     if [ -z "$worktree_name" ]; then
-        if command -v fzf &>/dev/null; then
-            local selected
-            selected=$(find "$project_dir" -maxdepth 1 -mindepth 1 -type d \
-                | sed "s|$project_dir/||" \
-                | fzf --prompt="worktree> ")
-            [ -n "$selected" ] && cd "$project_dir/$selected" || return 0
-        else
+        local worktrees
+        worktrees=($(find "$project_dir" -maxdepth 1 -mindepth 1 -type d -exec basename {} \;))
+        if [ ${#worktrees[@]} -eq 0 ]; then
             cd "$project_dir" || return 1
+            return 0
         fi
+        local selected
+        selected=$(_gwt_pick "worktree>" "${worktrees[@]}")
+        [ -n "$selected" ] && cd "$project_dir/$selected" || return 0
         return 0
     fi
 
@@ -164,19 +183,42 @@ _gwtadd_completion() {
 }
 compdef _gwtadd_completion gwtadd
 
-# gwts - fzf-switch between worktrees of the current repo
+# gwts - Switch to a worktree of the current repo
+# Usage:
+#   gwts               → interactive picker
+#   gwts <branch>      → jump directly to that branch's worktree
 function gwts() {
+    local repo_root
+    repo_root=$(git worktree list --porcelain | awk 'NR==1{print $2}')
+    local repo_dir
+    repo_dir=$(dirname "$repo_root")
+
+    if [ -n "$1" ]; then
+        local wt_path="$repo_dir/$1"
+        if [ -d "$wt_path" ]; then
+            cd "$wt_path"
+        else
+            echo "Worktree '$1' not found in $repo_dir"
+            return 1
+        fi
+        return 0
+    fi
+
+    local branches
+    branches=($(git worktree list --porcelain | awk '/^branch/{print $2}' | sed 's|refs/heads/||'))
     local selected
-    selected=$(git worktree list --porcelain \
-        | awk '/^worktree/{path=$2} /^branch/{branch=$2; print path "\t" branch}' \
-        | column -t -s $'\t' \
-        | fzf --prompt="switch worktree> " \
-        | awk '{print $1}')
-    [ -n "$selected" ] && cd "$selected"
+    selected=$(_gwt_pick "switch worktree>" "${branches[@]}")
+    [ -n "$selected" ] && cd "$repo_dir/$selected"
 }
 
-# Completion: gwts takes no arguments (fzf handles selection interactively)
-_gwts_completion() { }
+# Completion: arg 1 = existing worktree branches
+_gwts_completion() {
+    if (( CURRENT == 2 )); then
+        compadd -- $(git worktree list --porcelain \
+            | awk '/^branch/{print $2}' \
+            | sed 's|refs/heads/||' 2>/dev/null)
+    fi
+}
 compdef _gwts_completion gwts
 
 # gwtkill - Remove a worktree and delete its branch
@@ -185,11 +227,14 @@ function gwtkill() {
     local branch="$1"
 
     if [ -z "$branch" ]; then
-        branch=$(git worktree list --porcelain \
+        local current_branch
+        current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+        local branches
+        branches=($(git worktree list --porcelain \
             | awk '/^branch/{print $2}' \
             | sed 's|refs/heads/||' \
-            | grep -v "$(git symbolic-ref --short HEAD 2>/dev/null)" \
-            | fzf --prompt="kill worktree> ")
+            | grep -v "^${current_branch}$"))
+        branch=$(_gwt_pick "kill worktree>" "${branches[@]}")
     fi
 
     [ -z "$branch" ] && return 1
