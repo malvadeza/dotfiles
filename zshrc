@@ -46,6 +46,7 @@ plugins=(
 # Loads extensions
 [ -f $DOTFILES_DIR/01-aliases.sh ] && . $DOTFILES_DIR/01-aliases.sh
 [ -f $DOTFILES_DIR/02-commands.sh ] && . $DOTFILES_DIR/02-commands.sh
+[ -f $DOTFILES_DIR/03-git-insights.sh ] && . $DOTFILES_DIR/03-git-insights.sh
 
 # Loads overrides
 [ -f $ZSH_OVERRIDES ] && . $ZSH_OVERRIDES
