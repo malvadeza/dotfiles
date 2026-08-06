@@ -40,9 +40,15 @@ GRAY="\033[90m"
 # for unfilled -- with the unfilled glyph always rendered in plain gray.
 # The shape difference guarantees visible contrast regardless of how any
 # given terminal renders ANSI colors.
-GREEN_VIVID="\033[92m"
-YELLOW_VIVID="\033[93m"
-RED_VIVID="\033[91m"
+GREEN_VIVID="\033[38;5;70m"
+GREEN="\033[38;5;28m"
+YELLOW_VIVID="\033[38;5;178m"
+YELLOW_TRUE="\033[38;5;136m"
+RED_VIVID="\033[38;5;166m"
+RED="\033[38;5;130m"
+CYAN_VIVID="\033[96m"
+BLUE_VIVID="\033[94m"
+MAGENTA_VIVID="\033[95m"
 
 BLOCK_FILLED="█"
 BLOCK_EMPTY="░"
@@ -165,7 +171,7 @@ if [ "$pct_int" -ge 0 ] 2>/dev/null; then
       zone_muted="$GREEN"
     elif [ "$pos" -lt "$(( green_blocks + yellow_blocks ))" ]; then
       zone_vivid="$YELLOW_VIVID"
-      zone_muted="$YELLOW"
+      zone_muted="$YELLOW_TRUE"
     else
       zone_vivid="$RED_VIVID"
       zone_muted="$RED"
@@ -221,9 +227,9 @@ fi
 
 # --- line 1: model | effort | context bar - size/max | cost ---
 # effort_level always shows (defaults to "none" above when unavailable).
-line1="${BOLD}${model_name}${RESET} ${GRAY}|${RESET} ${MAGENTA}${effort_level}${RESET}"
+line1="${BOLD}${model_name}${RESET} ${GRAY}|${RESET} ${MAGENTA_VIVID}${effort_level}${RESET}"
 line1="${line1} ${GRAY}|${RESET} ${bar} ${GRAY}-${RESET} ${ctx_input_fmt}/${ctx_max_fmt}"
-line1="${line1} ${GRAY}|${RESET} ${CYAN}${cost_fmt}${RESET}"
+line1="${line1} ${GRAY}|${RESET} ${CYAN_VIVID}${cost_fmt}${RESET}"
 
 # --- line 2: repo | -removed / +added | branch | worktree | PR-link ---
 # branch and worktree always show now -- "-" is used as a placeholder when
@@ -237,22 +243,22 @@ fi
 
 line2=""
 if [ -n "$repo_name" ] && [ "$repo_name" != "null" ]; then
-  line2="${MAGENTA}${repo_name}${RESET} ${GRAY}|${RESET} "
+  line2="${MAGENTA_VIVID}${repo_name}${RESET} ${GRAY}|${RESET} "
 fi
-line2="${line2}${RED}-${lines_removed}${RESET} ${GRAY}/${RESET} ${GREEN}+${lines_added}${RESET}"
-line2="${line2} ${GRAY}|${RESET} ${BLUE}${branch_display}${RESET}"
-line2="${line2} ${GRAY}|${RESET} ${YELLOW}${worktree_display}${RESET}"
+line2="${line2}${RED_VIVID}-${lines_removed}${RESET} ${GRAY}/${RESET} ${GREEN_VIVID}+${lines_added}${RESET}"
+line2="${line2} ${GRAY}|${RESET} ${BLUE_VIVID}${branch_display}${RESET}"
+line2="${line2} ${GRAY}|${RESET} ${YELLOW_TRUE}${worktree_display}${RESET}"
 
 # PR link/badge -- only shown when an open PR exists for the current branch;
 # colored by review state when available (approved=green, changes
 # requested=red, pending=yellow, draft=gray, unknown=cyan).
 if [ -n "$pr_number" ] && [ "$pr_number" != "null" ]; then
   case "$pr_review_state" in
-    approved) pr_color="$GREEN" ;;
-    changes_requested) pr_color="$RED" ;;
-    pending) pr_color="$YELLOW" ;;
+    approved) pr_color="$GREEN_VIVID" ;;
+    changes_requested) pr_color="$RED_VIVID" ;;
+    pending) pr_color="$YELLOW_TRUE" ;;
     draft) pr_color="$GRAY" ;;
-    *) pr_color="$CYAN" ;;
+    *) pr_color="$CYAN_VIVID" ;;
   esac
   line2="${line2} ${GRAY}|${RESET} ${pr_color}PR #${pr_number}${RESET}"
 fi
@@ -260,7 +266,7 @@ fi
 # --- line 3: [language badge] pwd (with $HOME shortened to ~) ---
 display_dir="${cwd/#$HOME/~}"
 if [ -n "$lang_badge" ]; then
-  line3="${CYAN}[${lang_badge}]${RESET} ${GRAY}${display_dir}${RESET}"
+  line3="${CYAN_VIVID}[${lang_badge}]${RESET} ${GRAY}${display_dir}${RESET}"
 else
   line3="${GRAY}${display_dir}${RESET}"
 fi
